@@ -9,20 +9,20 @@ import org.testng.annotations.Test;
 
 import java.io.IOException;
 
-public class LoginTests extends TestBase {
+public class RegistrationTests extends TestBase {
 
-    // token = eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6WyJST0xFX1VTRVIiXSwic3ViIjoidml0eWFAbWFpbC5jb20iLCJpc3MiOiJSZWd1bGFpdCIsImV4cCI6MTY5ODU5NjY1MSwiaWF0IjoxNjk3OTk2NjUxfQ.FeMJxjEY3hINDFaUZw5xhLDg48hASE0SVvZIZcdaI4o
-
-    public static final MediaType JSON = MediaType.get("application/json;charset=utf-8");
-    @Test
-    public void loginPositive() throws IOException {
+    // token = eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6WyJST0xFX1VTRVIiXSwic3ViIjoia29seWEyMzgzQG1haWwuY29tIiwiaXNzIjoiUmVndWxhaXQiLCJleHAiOjE2OTg3Mjk1ODQsImlhdCI6MTY5ODEyOTU4NH0.4GIrpgkxzSzpgf5rCfCp83pprFCd2j8dp--vEjFviPY
+    public static final MediaType JSON = MediaType.get("application/json");
+    int i = (int)(System.currentTimeMillis()/1000)%3600;
+   @Test
+    public void RegistrationPositive() throws IOException {
         AuthRequestDTO requestDTO = AuthRequestDTO.builder()
-                .username("vitya@mail.com")
-                .password("Oo54321$")
+                .username("kolya"+i+"@mail.com")
+                .password("Kk123456$")
                 .build();
         RequestBody requestBody = RequestBody.create(gson.toJson(requestDTO),JSON);
         Request request = new Request.Builder()
-                .url(baseURL + "/v1/user/login/usernamepassword")
+                .url(baseURL + "/v1/user/registration/usernamepassword")
                 .post(requestBody)
                 .build();
         Response response = client.newCall(request).execute();
